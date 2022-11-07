@@ -15,13 +15,20 @@ var titleLimit = 275;
  *
  * */
 function calculateRotation(x, y, el) {
+    // Calculate the boundaries and rotations. 
     var box = el.getBoundingClientRect();
     var calcX = -(y - box.y - (box.height / 2)) / titleLimit;
     var calcY = (x - box.x - (box.width / 2)) / titleLimit;
-    // Perform deadband to prevent glitchy movement.
-    console.log(Math.round(calcX), Math.round(calcY));
-    /* calcX = Math.abs(calcX) > 2 ? 2 : calcX;
-    calcY = Math.abs(calcY) > 2 ? 2 : calcY; */
+    // Depending on the rotations, color shift the title to show a shadow. 
+    if (calcX < calcY) {
+        var colorShift = 255 - Math.abs(calcX - calcY) * 12;
+        var colorString = "rgb(" + colorShift + ", " + colorShift + ", " + colorShift + ")";
+        title.style.color = colorString;
+    }
+    else {
+        title.style.color = "rgb(255, 255, 255)";
+    }
+    // Return the new rotational String after color adjustments 
     return "perspective(150px) " + "rotateX(" + calcX + "deg) " + "rotateY(" + calcY + "deg)";
 }
 ;
@@ -43,8 +50,8 @@ function transformElement(el, xyEl) {
  *
  */
 function transformCursor(setting) {
-    var arrSize = [30, 35];
-    var arrColors = ["rgba(45, 53, 69", "rgba(255, 255, 255"];
+    var arrSize = [15, 20];
+    var arrColors = ["rgba(0, 0, 0", "rgba(255, 255, 255"];
     circle.style.width = arrSize[setting] + "px";
     circle.style.height = arrSize[setting] + "px";
     circle.style.border = "2px solid " + arrColors[setting] + ")";

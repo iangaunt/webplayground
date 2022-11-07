@@ -18,16 +18,23 @@ var titleLimit : number = 275;
  * 
  * */
 function calculateRotation(x : number, y : number, el : HTMLElement) : string {
+    // Calculate the boundaries and rotations. 
 	let box = el.getBoundingClientRect();
 	let calcX = -(y - box.y - (box.height / 2)) / titleLimit;
 	let calcY = (x - box.x - (box.width / 2)) / titleLimit;
 
-    // Perform deadband to prevent glitchy movement.
-    console.log(Math.round(calcX), Math.round(calcY));
-    /* calcX = Math.abs(calcX) > 2 ? 2 : calcX;
-    calcY = Math.abs(calcY) > 2 ? 2 : calcY; */
+    // Depending on the rotations, color shift the title to show a shadow. 
+    if (calcX < calcY) {
+        let colorShift = 255 - Math.abs(calcX - calcY) * 12; 
+        let colorString = "rgb(" + colorShift + ", " + colorShift + ", " + colorShift + ")";
 
-	return "perspective(150px) " + "rotateX("+ calcX +"deg) " + "rotateY("+ calcY +"deg)";
+        title!.style.color = colorString;
+    } else { 
+        title!.style.color = "rgb(255, 255, 255)";
+    }
+
+    // Return the new rotational String after color adjustments 
+	return "perspective(150px) " + "rotateX(" + calcX + "deg) " + "rotateY(" + calcY + "deg)";
 };
 
 /** 
@@ -49,8 +56,8 @@ function transformElement(el : HTMLElement, xyEl) {
  * 
  */
 function transformCursor(setting : number) {
-    let arrSize : number[] = [30, 35];
-    let arrColors : string[] = ["rgba(45, 53, 69", "rgba(255, 255, 255"];
+    let arrSize : number[] = [15, 20];
+    let arrColors : string[] = ["rgba(0, 0, 0", "rgba(255, 255, 255"];
 
     circle!.style.width = arrSize[setting] + "px"; circle!.style.height = arrSize[setting] + "px";
     circle!.style.border = "2px solid " + arrColors[setting] + ")";

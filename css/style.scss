@@ -4,9 +4,9 @@
 
 body {
     cursor: none;
-    overflow: hidden;
+    overflow-x: hidden;
     font-family: "Arial"; 
-    font-size: 120px;
+    font-size: 160px;
 }
 
 @keyframes grid-shift {
@@ -15,8 +15,8 @@ body {
 }
 
 #cursor-border {
-    height: 30px;
-    width: 30px;
+    height: 15px;
+    width: 15px;
 
     position: absolute;
     transform: translate(-50%, -50%);
@@ -24,15 +24,24 @@ body {
     transition-property: height, width, border, box-shadow;
 
     border-radius: 50%;
-    box-shadow: 0 0 10px 0px rgba(45, 53, 69, 0.6); /* inner white */
-    border: 2px solid rgb(45, 53, 69);
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0);
+    border: 2px solid rgba(0, 0, 0);
 }
 
 /* opener - Main wrapper for the title and other visual effects. */
 .opener {
-    height: 100%; width: 100%;
+    height: 100%; width: 100%; 
+    overflow: hidden;
+
     display: flex; align-items: center; justify-content: center;
     user-select: none;
+
+    .navigator {
+        height: 10%; width: 30%;
+        background: red;
+        position: absolute;
+        right: 1%; top: 1%;
+    }
 
     .background { 
         overflow: hidden;
@@ -42,7 +51,7 @@ body {
         animation: grid-shift ease-in-out 9s infinite alternate; 
         z-index: -1;
 
-        background-image: url("/img/grid.svg"), linear-gradient(40deg, rgba(10, 12, 18, 1) 0%, rgba(10, 12, 18, 1) 39%, rgba(25, 29, 38, 1) 100%);
+        background-image: url("/img/grid.svg"), linear-gradient(40deg, hsla(255, 18%, 30%, 1) 0%, hsla(221, 44%, 46%, 1) 100%);
         background-repeat: cover;
     }
 
@@ -82,4 +91,8 @@ body {
     }
 }
 
+.description {
+    height: 60vh; width: 100vw; 
+    background-color: red;
+}
 
