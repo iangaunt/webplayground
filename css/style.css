@@ -4,7 +4,6 @@
 }
 
 body {
-  cursor: none;
   overflow-x: hidden;
   font-family: "Arial";
   font-size: 160px;
@@ -31,6 +30,7 @@ body {
   height: 15px;
   width: 15px;
   position: absolute;
+  z-index: 1;
   transform: translate(-50%, -50%);
   transition-duration: 0.2s;
   transition-property: height, width, border, box-shadow;
@@ -47,18 +47,45 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
 }
 .opener .navigator {
-  height: 10%;
-  width: 30%;
-  background: red;
+  height: 8%;
+  width: 45%;
+  background: transparent;
+  z-index: 10;
   position: absolute;
   right: 1%;
   top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.opener .navigator a {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13%;
+  transition-duration: 0.4s;
+  padding-left: 2.5%;
+}
+.opener .navigator a::before {
+  content: " ";
+  width: 5px;
+  height: 5px;
+  vertical-align: middle;
+  display: inline-block;
+  transition-duration: 1s;
+  border: 2px solid white;
+  transform: rotate(45deg);
+  background-color: transparent;
+}
+.opener .navigator a:hover {
+  color: rgb(171, 171, 171);
+}
+.opener .navigator a:hover::before {
+  transform: rotate(135deg);
+  border: 2px solid rgb(171, 171, 171);
+  border-radius: 10px;
 }
 .opener .background {
   overflow: hidden;
@@ -73,6 +100,10 @@ body {
   background-repeat: cover;
 }
 .opener .title {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   height: 100vh;
   width: 100%;
   display: flex;
