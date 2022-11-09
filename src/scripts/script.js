@@ -1,3 +1,5 @@
+/* Imports */
+/* import * as $ from "jquery";*/
 /* Elements */
 var title = document.getElementById("title");
 var titleContainer = document.getElementById("title-container");
@@ -21,7 +23,7 @@ function calculateRotation(x, y, el) {
     var calcY = (x - box.x - (box.width / 2)) / titleLimit;
     // Depending on the rotations, color shift the title to show a shadow. 
     if (calcX < calcY) {
-        var colorShift = 255 - Math.abs(calcX - calcY) * 12;
+        var colorShift = 255 - Math.abs(calcX - calcY) * 16;
         var colorString = "rgb(" + colorShift + ", " + colorShift + ", " + colorShift + ")";
         title.style.color = colorString;
     }
@@ -50,7 +52,7 @@ function transformElement(el, xyEl) {
  *
  */
 function transformCursor(setting) {
-    var arrSize = [15, 20];
+    var arrSize = [6, 9];
     var arrColors = ["rgba(0, 0, 0", "rgba(255, 255, 255"];
     circle.style.width = arrSize[setting] + "px";
     circle.style.height = arrSize[setting] + "px";
@@ -67,9 +69,15 @@ title.onmousemove = function (e) {
 };
 /** Moves the circle to align directly with the cursor. */
 document.addEventListener("mousemove", function (e) {
-    circle.style.left = (e.pageX + 11) + 'px';
-    circle.style.top = (e.pageY + 11) + 'px';
+    circle.style.left = (e.pageX + 3.5) + 'px';
+    circle.style.top = (e.pageY + 3.5) + 'px';
 });
 /** Changes the style of the circle depending on if the mouse is up or down. */
 document.addEventListener("mousedown", function () { transformCursor(1); });
 document.addEventListener("mouseup", function () { transformCursor(0); });
+/** Adds a blur effect to the header when the user scrolls. */
+/* $(window).on('scroll', function () {
+    var pixs = $(document).scrollTop()
+    pixs! = pixs! / 100;
+    $(".opener").css({"-webkit-filter": "blur("+pixs+"px)","filter": "blur("+pixs+"px)" })
+}); */

@@ -4,9 +4,14 @@
 }
 
 body {
+  cursor: none;
   overflow-x: hidden;
   font-family: "Arial";
   font-size: 160px;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @-webkit-keyframes grid-shift {
@@ -26,11 +31,16 @@ body {
     transform: rotate(8.2deg);
   }
 }
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 #cursor-border {
-  height: 15px;
-  width: 15px;
+  height: 6px;
+  width: 6px;
+  z-index: 9999;
+  pointer-events: none;
   position: absolute;
-  z-index: 1;
   transform: translate(-50%, -50%);
   transition-duration: 0.2s;
   transition-property: height, width, border, box-shadow;
@@ -49,18 +59,19 @@ body {
   justify-content: center;
 }
 .opener .navigator {
+  position: fixed;
   height: 8%;
   width: 45%;
   background: transparent;
   z-index: 10;
-  position: absolute;
   right: 1%;
-  top: 1%;
+  top: 0.5%;
   display: flex;
   align-items: center;
   justify-content: right;
 }
 .opener .navigator a {
+  z-index: 3;
   color: white;
   text-align: center;
   text-decoration: none;
@@ -87,16 +98,28 @@ body {
   border: 2px solid rgb(171, 171, 171);
   border-radius: 10px;
 }
+.opener .navigator::before {
+  content: "";
+  position: absolute;
+  height: 80%;
+  width: 110%;
+  left: -5%;
+  top: 8%;
+  z-index: 2;
+  background: linear-gradient(90deg, hsla(221deg, 44%, 46%, 0) 0%, rgb(51, 75, 126) 100%);
+  transform: perspective(150px) rotateX(20deg);
+  transform: perspective(150px) rotateX(20deg);
+}
 .opener .background {
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   width: 150vw;
   height: 150vh;
   transform: rotate(5deg);
   -webkit-animation: grid-shift ease-in-out 9s infinite alternate;
           animation: grid-shift ease-in-out 9s infinite alternate;
   z-index: -1;
-  background-image: url("/img/grid.svg"), linear-gradient(40deg, hsl(255deg, 18%, 30%) 0%, hsl(221deg, 44%, 46%) 100%);
+  background-image: url("/public/images/grid.svg"), linear-gradient(40deg, hsl(255deg, 18%, 30%) 0%, hsl(221deg, 44%, 46%) 100%);
   background-repeat: cover;
 }
 .opener .title {
@@ -111,6 +134,7 @@ body {
   justify-content: center;
   text-align: center;
   color: rgb(222, 222, 222);
+  filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.6));
 }
 .opener .title .container {
   width: 100%;
@@ -134,12 +158,12 @@ body {
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   position: absolute;
-  background-image: url("/img/shmg.png");
+  background-image: url("/public/images/shmg.png");
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.description {
+.about-me {
   height: 60vh;
   width: 100vw;
   background-color: red;

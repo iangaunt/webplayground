@@ -2,11 +2,15 @@
     margin: 0; padding: 0; 
 }
 
-body {
-    
+body { 
+    cursor: none;
     overflow-x: hidden;
     font-family: "Arial"; 
     font-size: 160px;
+}
+
+html { 
+    scroll-behavior: smooth;
 }
 
 @keyframes grid-shift {
@@ -14,12 +18,16 @@ body {
     100% { transform: rotate(8.2deg); }
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 #cursor-border {
-    height: 15px;
-    width: 15px;
+    height: 6px; width: 6px;
+    z-index: 9999;
+    pointer-events: none;
 
     position: absolute;
-    z-index: 1;
     transform: translate(-50%, -50%);
     transition-duration: 0.2s;
     transition-property: height, width, border, box-shadow;
@@ -37,15 +45,16 @@ body {
     display: flex; align-items: center; justify-content: center;
 
     .navigator {
+        position: fixed; 
         height: 8%; width: 45%;
         background: transparent;
         z-index: 10;
-        position: absolute;
-        right: 1%; top: 1%;
+        right: 1%; top: 0.5%;
 
         display: flex; align-items: center; justify-content: right;
 
         a { 
+            z-index: 3; 
             color: white; 
             text-align: center; text-decoration: none;
             font-size: 13%;
@@ -77,17 +86,28 @@ body {
                 }
             }
         }
+
+        &::before {
+            content: '';
+            position: absolute; 
+            height: 80%; width: 110%; 
+            left: -5%; top: 8%; 
+            z-index: 2; 
+            background: linear-gradient(90deg, hsla(221, 44%, 46%, 0) 0%, rgb(51, 75, 126) 100%); 
+            transform: perspective(150px) rotateX(20deg);
+            transform: perspective(150px) rotateX(20deg);
+        }
     }
 
     .background { 
         overflow: hidden;
-        position: absolute;
+        position: fixed;
         width: 150vw; height: 150vh; 
         transform: rotate(5deg);
         animation: grid-shift ease-in-out 9s infinite alternate; 
         z-index: -1;
 
-        background-image: url("/img/grid.svg"), linear-gradient(40deg, hsla(255, 18%, 30%, 1) 0%, hsla(221, 44%, 46%, 1) 100%);
+        background-image: url("/public/images/grid.svg"), linear-gradient(40deg, hsla(255, 18%, 30%, 1) 0%, hsla(221, 44%, 46%, 1) 100%);
         background-repeat: cover;
     }
 
@@ -98,6 +118,8 @@ body {
         display: flex; align-items: center; justify-content: center; 
         text-align: center;
         color: rgb(222, 222, 222);
+
+        filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 0.6));
 
         .container { 
             width: 100%; 
@@ -122,14 +144,14 @@ body {
             -webkit-transform: rotate(180deg);
             
             position: absolute;
-            background-image: url("/img/shmg.png");
+            background-image: url("/public/images/shmg.png");
             background-position: center;
             background-repeat: no-repeat;
         }
     }
 }
 
-.description {
+.about-me {
     height: 60vh; width: 100vw; 
     background-color: red;
 }
