@@ -1,5 +1,6 @@
 /* Imports */
-/* import * as $ from "jquery";*/
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 /* Elements */
 var title : HTMLElement | null = document.getElementById("title"); 
@@ -10,6 +11,31 @@ var circle = document.getElementById("cursor-border");
 /* Variables */
 var titleLimit : number = 275;
 
+/* Classes */
+/**
+ * A class for building hotbar navigation buttons. 
+ * @constructor 
+ * @param newText adds a String that is formatted to the website.
+ * 
+ * 
+ */
+class Nav {
+    text: string;
+    id: string;
+
+    constructor(newText: string) {
+        this.text = newText.toUpperCase();
+        this.id = "#" + this.text.toLowerCase().replace(' ', '-') ;
+    }
+
+    build(): JSX.Element {
+        return (
+            <a href={this.id}>{this.text}</a>
+        )
+    }
+}
+
+/* Functions */
 /** 
  * Performs boundary box calculations and returns a property string with the correct orientations to face the mouse.
  * 
@@ -43,11 +69,11 @@ function calculateRotation(x : number, y : number, el : HTMLElement) : string {
 /** 
  * Applies rotational style effects to the passed-in CSS element.
  * 
- * @param el - X coordinate. 
- * @param xyEl - Y coordinate. 
+ * @param el - The element which the transformation is applied on.
+ * @param xyEl - The XY of the element. 
  * 
  * */
-function transformElement(el : HTMLElement, xyEl) {
+function transformElement(el : HTMLElement, xyEl: any) {
 	el.style.transform = calculateRotation.apply(null, xyEl);
     el.style.transitionDuration = "0.1s";
 }
@@ -93,4 +119,5 @@ document.addEventListener("mouseup", function() { transformCursor(0); })
     pixs! = pixs! / 100;
     $(".opener").css({"-webkit-filter": "blur("+pixs+"px)","filter": "blur("+pixs+"px)" })     
 }); */
+
 

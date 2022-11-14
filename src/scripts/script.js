@@ -1,11 +1,32 @@
+"use strict";
+exports.__esModule = true;
 /* Imports */
-/* import * as $ from "jquery";*/
+var React = require("react");
 /* Elements */
 var title = document.getElementById("title");
 var titleContainer = document.getElementById("title-container");
 var circle = document.getElementById("cursor-border");
 /* Variables */
 var titleLimit = 275;
+/* Classes */
+/**
+ * A class for building hotbar navigation buttons.
+ * @class
+ *
+ *
+ *
+ */
+var Nav = /** @class */ (function () {
+    function Nav(newText) {
+        this.text = newText.toUpperCase();
+        this.id = "#" + this.text.toLowerCase().replace(' ', '-');
+    }
+    Nav.prototype.build = function () {
+        return (<a href={this.id}>{this.text}</a>);
+    };
+    return Nav;
+}());
+/* Functions */
 /**
  * Performs boundary box calculations and returns a property string with the correct orientations to face the mouse.
  *
@@ -37,8 +58,8 @@ function calculateRotation(x, y, el) {
 /**
  * Applies rotational style effects to the passed-in CSS element.
  *
- * @param el - X coordinate.
- * @param xyEl - Y coordinate.
+ * @param el - The element which the transformation is applied on.
+ * @param xyEl - The XY of the element.
  *
  * */
 function transformElement(el, xyEl) {
