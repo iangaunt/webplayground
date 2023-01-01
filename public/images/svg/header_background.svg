@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 600 600" height="3em" width="3em">
+    <defs>
+        <style>
+            .cls-1 {
+                opacity: 0.02;
+            }
+
+            .cls-2 {
+                fill: #f2f2f2;
+            }
+        </style>
+    </defs>
+    <g class="cls-1">
+        <rect class="cls-2" width="50%" height="50%" />
+    </g>
+    <g class="cls-1">
+        <rect class="cls-2" x="50%" y="50%" width="50%" height="50%" />
+    </g>
+</svg>
