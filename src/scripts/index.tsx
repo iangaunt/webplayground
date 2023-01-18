@@ -1,38 +1,34 @@
+// React
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 
+// Stylesheets
 import '../stylesheets/style.css';
 
+// Components
 function Header() : JSX.Element {
-    const element = (
+    return (
         <div>
-            <h1 id="header-title"><span id="first-name"></span><span id="highlight-name"></span><span id="last-name"></span></h1>
-            <h2 id="header-description">full stack <span id="highlight">developer</span> ; graphic designer</h2>
+            <h1 id="header">IAN GAUNT</h1>
+                <br />
+            <div className='squareContainer'>
+                <Square color="#235789"/>
+                <Square color="#C1292E"/>
+                <Square color="#F1D302"/>
+            </div>
         </div>
     );
-    return element;
 }
 
-createRoot(document.getElementById('header-root')!).render(
-    <Header />
-);
-
-var typeDelay = 1000; 
-var title = "IAN_GAUNT"; 
-
-for (let i : number = 0; i < title.length; i++) {
-    setTimeout(() => {
-        var id = "";
-        id = (i == 3 ? "highlight-name" : (i > 3 ? "last-name" : "first-name"));
-
-        document.getElementById(id)!.textContent += title.charAt(i);
-        console.log(id);
-    }, typeDelay);
-
-    typeDelay += 55;
+function Square(props : any) : JSX.Element {
+    return (
+        <div className="square" style={{background: props.color}}></div>
+    )
 }
 
-setTimeout(() => {
-    document.getElementById("header-title")!.style.animation = "1.2s ease-in-out both header-title-shrink";
-    document.getElementById("header-description")!.style.animation = "1.2s ease-in-out both header-description-grow";
-}, typeDelay + 250);
+// Function for building components and rendering them.
+function render(id : string, components : JSX.Element) {
+    createRoot(document.getElementById(id)!).render(components);
+}
+
+render('header-root', <Header />);
