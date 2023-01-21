@@ -6,24 +6,30 @@ import { createRoot } from 'react-dom/client';
 import '../stylesheets/style.css';
 
 // Components
-function Header() : JSX.Element {
+function Header() {
     return (
         <div>
             <h1 id="header">IAN GAUNT</h1>
-                <br />
-            <div className='squareContainer'>
-                <Square color="#235789"/>
-                <Square color="#C1292E"/>
-                <Square color="#F1D302"/>
+            <div className='square-container'>
+                <Square type="square sq1" color="#235789"/>
+                <Square type="square sq2" color="#C1292E"/>
+                <Square type="square sq3" color="#F1D302"/>
             </div>
         </div>
     );
 }
 
 function Square(props : any) : JSX.Element {
-    return (
-        <div className="square" style={{background: props.color}}></div>
+    let color : string = props.color; 
+    let type : string = props.type; 
+
+    let element = (
+        <div className={props.type} style={{
+            background: color
+        }}></div>
     )
+
+    return element; 
 }
 
 // Function for building components and rendering them.

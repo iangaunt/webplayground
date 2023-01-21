@@ -1,7 +1,58 @@
 @import url("https://fonts.googleapis.com/css2?family=Baskervville&display=swap");
 /* Variables */
+/* Keyframes */
+@-webkit-keyframes text-fadeOutIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    content: "software dev";
+  }
+}
+@keyframes text-fadeOutIn {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    content: "software dev";
+  }
+}
+@-webkit-keyframes text-fadeInOut {
+  0% {
+    opacity: 1;
+    content: "software dev";
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes text-fadeInOut {
+  0% {
+    opacity: 1;
+    content: "software dev";
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 * {
   font-family: "Baskervville", serif;
+  margin: 0;
+  padding: 0;
 }
 * body {
   overflow-x: hidden;
@@ -21,33 +72,40 @@
   overflow: hidden;
   background: #FDFFFC;
 }
-.header .squareContainer {
+.header .square-container {
   display: flex;
   justify-content: left;
-  align-items: center;
+  align-items: left;
 }
 .header .square {
   width: 60px;
   height: 60px;
   margin-left: 2px;
   margin-right: 2px;
+  font-size: 35px;
+  transition: width 0.4s ease-in-out, opacity 1s ease, content 1s ease, font-size 0.4s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header .square::before {
+  content: "";
+  color: #161925;
+  -webkit-animation: text-fadeInOut 0.4 ease-in-out backwards;
+          animation: text-fadeInOut 0.4 ease-in-out backwards;
+}
+.header .square:hover {
+  width: 200px;
+  font-size: 25px;
+}
+.header .square:hover::before {
+  -webkit-animation: text-fadeOutIn 0.4s ease-in-out forwards;
+          animation: text-fadeOutIn 0.4s ease-in-out forwards;
 }
 .header h1 {
   color: #161925;
   transition: color 0.2s;
   font-size: 125px;
-  line-height: 0px;
+  line-height: 125px;
   text-align: center;
-}
-.header h2 {
-  color: #161925;
-  font-size: 30px;
-  position: relative;
-  text-align: right;
-}
-.header h2 #highlight {
-  background-color: #235789;
-  color: #FDFFFC;
-  padding: 4px;
-  border-radius: 5px;
 }/*# sourceMappingURL=style.css.map */

@@ -5,10 +5,26 @@ $white: #FDFFFC;
 $blue: #235789;
 $red: #C1292E;
 $yellow: #F1D302;
-$black: #161925; 
+$black: #161925;
+
+$sq1: 'software dev';
+
+/* Keyframes */
+@keyframes text-fadeOutIn {
+    0% { opacity: 1; }
+    50% { opacity: 0;}
+    100% { opacity: 1; content: $sq1;}
+}
+
+@keyframes text-fadeInOut {
+    0% { opacity: 1; content: $sq1;}
+    50% { opacity: 0;}
+    100% { opacity: 1; }
+}
 
 * {
     font-family: 'Baskervville', serif;
+    margin: 0; padding: 0;
 
     body {
         overflow-x: hidden;
@@ -28,38 +44,46 @@ $black: #161925;
 
     background: $white; 
 
-    .squareContainer {
-        display: flex; justify-content: left; align-items: center;
+    .square-container {
+        display: flex; justify-content: left; align-items: left;
     }
-    
+
     .square {
+        $card: 'Sd';
+        $full: 'software developer'; 
+
         width: 60px;
         height: 60px;
         margin-left: 2px;
         margin-right: 2px;
-    }
+
+        font-size: 35px;
+
+        transition: width 0.4s ease-in-out, opacity 1s ease, content 1s ease, font-size 0.4s ease;
+        display: flex; justify-content: center; align-items: center;
+
+        &::before {
+            content: '';
+            color: $black;
+            animation: text-fadeInOut 0.4 ease-in-out backwards; 
+        }
+
+        &:hover {
+            width: 200px;
+            font-size: 25px;
+
+            &::before {
+                animation: text-fadeOutIn 0.4s ease-in-out forwards;
+            }
+        }
+    }    
 
     h1 {
         color: $black;
         transition: color 0.2s;
 
         font-size: 125px; 
-        line-height: 0px;
+        line-height: 125px;
         text-align: center;
-    }
-
-    h2 {
-        color: $black;
-        font-size: 30px; 
-
-        position: relative;
-        text-align: right;
-
-        #highlight {
-            background-color: $blue;
-            color: $white;
-            padding: 4px;
-            border-radius: 5px;
-        }
     }
 }
