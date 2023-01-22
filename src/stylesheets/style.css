@@ -1,52 +1,61 @@
 @import url("https://fonts.googleapis.com/css2?family=Baskervville&display=swap");
 /* Variables */
+/* Colors */
 /* Keyframes */
 @-webkit-keyframes text-fadeOutIn {
   0% {
     opacity: 1;
+    background: var(--starting-color);
   }
   50% {
     opacity: 0;
   }
   100% {
     opacity: 1;
-    content: "software dev";
+    content: var(--full);
+    background: var(--ending-color);
   }
 }
 @keyframes text-fadeOutIn {
   0% {
     opacity: 1;
+    background: var(--starting-color);
   }
   50% {
     opacity: 0;
   }
   100% {
     opacity: 1;
-    content: "software dev";
+    content: var(--full);
+    background: var(--ending-color);
   }
 }
 @-webkit-keyframes text-fadeInOut {
   0% {
     opacity: 1;
-    content: "software dev";
+    content: var(--full);
+    background: var(--ending-color);
   }
   50% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+    background: var(--starting-color);
   }
 }
 @keyframes text-fadeInOut {
   0% {
     opacity: 1;
-    content: "software dev";
+    content: var(--full);
+    background: var(--ending-color);
   }
   50% {
     opacity: 0;
   }
   100% {
     opacity: 1;
+    background: var(--starting-color);
   }
 }
 * {
@@ -78,10 +87,11 @@
   align-items: left;
 }
 .header .square {
+  --card: "";
+  --full: "";
   width: 60px;
   height: 60px;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin: 2px;
   font-size: 35px;
   transition: width 0.4s ease-in-out, opacity 1s ease, content 1s ease, font-size 0.4s ease;
   display: flex;
@@ -89,18 +99,33 @@
   align-items: center;
 }
 .header .square::before {
-  content: "";
+  content: var(--card);
   color: #161925;
   -webkit-animation: text-fadeInOut 0.4 ease-in-out backwards;
           animation: text-fadeInOut 0.4 ease-in-out backwards;
 }
 .header .square:hover {
-  width: 200px;
+  width: 250px;
   font-size: 25px;
 }
 .header .square:hover::before {
   -webkit-animation: text-fadeOutIn 0.4s ease-in-out forwards;
           animation: text-fadeOutIn 0.4s ease-in-out forwards;
+}
+.header .sq1 {
+  --card: "Sd";
+  --full: "software dev";
+  background: #235789;
+}
+.header .sq2 {
+  --card: "Wb";
+  --full: "website builder";
+  background: #C1292E;
+}
+.header .sq3 {
+  --card: "Gh";
+  --full: "graphic designer";
+  background: #F1D302;
 }
 .header h1 {
   color: #161925;

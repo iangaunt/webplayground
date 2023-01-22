@@ -1,25 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Baskervville&display=swap');
 
 /* Variables */ 
+/* Colors */
 $white: #FDFFFC;
 $blue: #235789;
 $red: #C1292E;
 $yellow: #F1D302;
 $black: #161925;
 
-$sq1: 'software dev';
+$white-tns: #FDFFFC99;
+$blue-tns: #23578999;
+$red-tns: #C1292E99;
+$yellow-tns: #F1D30299;
+$black-tns: #16192599;
 
 /* Keyframes */
 @keyframes text-fadeOutIn {
-    0% { opacity: 1; }
-    50% { opacity: 0;}
-    100% { opacity: 1; content: $sq1;}
+    0% { opacity: 1; background: var(--starting-color)}
+    50% { opacity: 0; }
+    100% { opacity: 1; content: var(--full); background: var(--ending-color)}
 }
 
 @keyframes text-fadeInOut {
-    0% { opacity: 1; content: $sq1;}
-    50% { opacity: 0;}
-    100% { opacity: 1; }
+    0% { opacity: 1; content: var(--full); background: var(--ending-color)}
+    50% { opacity: 0; }
+    100% { opacity: 1; background: var(--starting-color);}
 }
 
 * {
@@ -49,13 +54,11 @@ $sq1: 'software dev';
     }
 
     .square {
-        $card: 'Sd';
-        $full: 'software developer'; 
+        --card: '';
+        --full: ''; 
 
-        width: 60px;
-        height: 60px;
-        margin-left: 2px;
-        margin-right: 2px;
+        width: 60px; height: 60px;
+        margin: 2px;
 
         font-size: 35px;
 
@@ -63,13 +66,13 @@ $sq1: 'software dev';
         display: flex; justify-content: center; align-items: center;
 
         &::before {
-            content: '';
+            content: var(--card);
             color: $black;
             animation: text-fadeInOut 0.4 ease-in-out backwards; 
         }
 
         &:hover {
-            width: 200px;
+            width: 250px;
             font-size: 25px;
 
             &::before {
@@ -77,6 +80,10 @@ $sq1: 'software dev';
             }
         }
     }    
+
+    .sq1 { --card: 'Sd'; --full: 'software dev'; background: $blue }
+    .sq2 { --card: 'Wb'; --full: 'website builder'; background: $red }
+    .sq3 { --card: 'Gh'; --full: 'graphic designer'; background: $yellow }
 
     h1 {
         color: $black;

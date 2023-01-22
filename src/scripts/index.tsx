@@ -8,25 +8,22 @@ import '../stylesheets/style.css';
 // Components
 function Header() {
     return (
-        <div>
+        <div style={ { border: '#161925 1px solid', padding: '20px' } }>
             <h1 id="header">IAN GAUNT</h1>
             <div className='square-container'>
-                <Square type="square sq1" color="#235789"/>
-                <Square type="square sq2" color="#C1292E"/>
-                <Square type="square sq3" color="#F1D302"/>
+                <Square type="square sq1"/>
+                <Square type="square sq2"/>
+                <Square type="square sq3"/>
             </div>
         </div>
     );
 }
 
 function Square(props : any) : JSX.Element {
-    let color : string = props.color; 
     let type : string = props.type; 
 
     let element = (
-        <div className={props.type} style={{
-            background: color
-        }}></div>
+        <div className={props.type}></div>
     )
 
     return element; 
