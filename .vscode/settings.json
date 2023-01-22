@@ -1,0 +1,9 @@
+{
+    "files.exclude": {
+        "node_modules": true,
+        ".gitignore": true,
+        "package-lock.json": true,
+        
+        "src/stylesheets/style.css.map": true
+    }
+}
