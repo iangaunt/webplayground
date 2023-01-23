@@ -6,6 +6,7 @@
   0% {
     opacity: 1;
     background: var(--starting-color);
+    color: #FDFFFC;
   }
   50% {
     opacity: 0;
@@ -14,12 +15,14 @@
     opacity: 1;
     content: var(--full);
     background: var(--ending-color);
+    color: #FDFFFC;
   }
 }
 @keyframes text-fadeOutIn {
   0% {
     opacity: 1;
     background: var(--starting-color);
+    color: #FDFFFC;
   }
   50% {
     opacity: 0;
@@ -28,6 +31,7 @@
     opacity: 1;
     content: var(--full);
     background: var(--ending-color);
+    color: #FDFFFC;
   }
 }
 @-webkit-keyframes text-fadeInOut {
@@ -35,6 +39,7 @@
     opacity: 1;
     content: var(--full);
     background: var(--ending-color);
+    color: #161925;
   }
   50% {
     opacity: 0;
@@ -42,6 +47,7 @@
   100% {
     opacity: 1;
     background: var(--starting-color);
+    color: #FDFFFC;
   }
 }
 @keyframes text-fadeInOut {
@@ -49,6 +55,7 @@
     opacity: 1;
     content: var(--full);
     background: var(--ending-color);
+    color: #161925;
   }
   50% {
     opacity: 0;
@@ -56,6 +63,7 @@
   100% {
     opacity: 1;
     background: var(--starting-color);
+    color: #FDFFFC;
   }
 }
 * {
@@ -72,6 +80,37 @@
   width: 0px;
 }
 
+.nav-bar {
+  overflow: hidden;
+  position: fixed;
+  z-index: 10000;
+  left: 20px;
+  top: 20px;
+  width: 100%;
+}
+.nav-bar a, .nav-bar button {
+  border-top: 1px solid #161925;
+  border-bottom: 1px solid #161925;
+  color: var(--glaucous);
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+  padding: 15px 20px;
+  float: left;
+  transition-property: background-color, height;
+  transition-duration: 0.3s;
+}
+.nav-bar a:hover, .nav-bar button:hover {
+  background: #235789;
+  height: 35px;
+}
+.nav-bar a:first-child, .nav-bar button:first-child {
+  border-left: 1px solid #161925;
+}
+.nav-bar a:last-child, .nav-bar button:last-child {
+  border-right: 1px solid #161925;
+}
+
 .header {
   width: 100vw;
   height: 100vh;
@@ -80,6 +119,10 @@
   align-items: center;
   overflow: hidden;
   background: #FDFFFC;
+}
+.header .container {
+  border: #161925 1px solid;
+  padding: 20px;
 }
 .header .square-container {
   display: flex;
@@ -100,7 +143,7 @@
 }
 .header .square::before {
   content: var(--card);
-  color: #161925;
+  color: #FDFFFC;
   -webkit-animation: text-fadeInOut 0.4 ease-in-out backwards;
           animation: text-fadeInOut 0.4 ease-in-out backwards;
 }
@@ -126,6 +169,16 @@
   --card: "Gh";
   --full: "graphic designer";
   background: #F1D302;
+}
+.header .copyright {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 15px;
+  color: rgba(22, 25, 37, 0.6);
+  border: 1px solid #161925;
+  padding: 6px;
+  font-style: italic;
 }
 .header h1 {
   color: #161925;

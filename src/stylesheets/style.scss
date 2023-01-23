@@ -16,15 +16,15 @@ $black-tns: #16192599;
 
 /* Keyframes */
 @keyframes text-fadeOutIn {
-    0% { opacity: 1; background: var(--starting-color)}
+    0% { opacity: 1; background: var(--starting-color); color: $white}
     50% { opacity: 0; }
-    100% { opacity: 1; content: var(--full); background: var(--ending-color)}
+    100% { opacity: 1; content: var(--full); background: var(--ending-color); color: $white}
 }
 
 @keyframes text-fadeInOut {
-    0% { opacity: 1; content: var(--full); background: var(--ending-color)}
+    0% { opacity: 1; content: var(--full); background: var(--ending-color); color: $black}
     50% { opacity: 0; }
-    100% { opacity: 1; background: var(--starting-color);}
+    100% { opacity: 1; background: var(--starting-color); color: $white}
 }
 
 * {
@@ -41,6 +41,39 @@ $black-tns: #16192599;
     }
 }
 
+.nav-bar {
+	overflow: hidden;
+	position: fixed; z-index: 10000;
+    left: 20px; top: 20px;
+	width: 100%;
+
+    a, button {
+        border-top: 1px solid $black; 
+        border-bottom: 1px solid $black; 
+
+        color: var(--glaucous);	font-size: 20px;
+        text-decoration: none; text-align: center;
+    
+        padding: 15px 20px;
+        float: left;
+    
+        transition-property: background-color, height; 
+        transition-duration: 0.3s;
+        
+        &:hover {
+            background: $blue;
+            height: 35px;
+        }
+
+        &:first-child {
+            border-left: 1px solid $black;
+        }
+
+        &:last-child {
+            border-right: 1px solid $black;
+        }
+    }
+}
 
 .header {
     width: 100vw; height: 100vh;
@@ -48,6 +81,11 @@ $black-tns: #16192599;
     overflow: hidden;
 
     background: $white; 
+
+    .container { 
+        border: $black 1px solid;
+        padding: 20px
+    }
 
     .square-container {
         display: flex; justify-content: left; align-items: left;
@@ -67,7 +105,7 @@ $black-tns: #16192599;
 
         &::before {
             content: var(--card);
-            color: $black;
+            color: $white;
             animation: text-fadeInOut 0.4 ease-in-out backwards; 
         }
 
@@ -81,9 +119,32 @@ $black-tns: #16192599;
         }
     }    
 
-    .sq1 { --card: 'Sd'; --full: 'software dev'; background: $blue }
-    .sq2 { --card: 'Wb'; --full: 'website builder'; background: $red }
-    .sq3 { --card: 'Gh'; --full: 'graphic designer'; background: $yellow }
+    .sq1 { 
+        --card: 'Sd'; --full: 'software dev'; 
+        background: $blue; 
+    }
+
+    .sq2 { 
+        --card: 'Wb'; --full: 'website builder'; 
+        background: $red; 
+    }
+
+    .sq3 { 
+        --card: 'Gh'; --full: 'graphic designer'; 
+        background: $yellow; 
+    }
+
+    .copyright {
+        position: absolute;
+        bottom: 20px; right: 20px; 
+        font-size: 15px; 
+        color: $black-tns;
+
+        border: 1px solid $black;
+        padding: 6px;
+
+        font-style: italic;
+    }
 
     h1 {
         color: $black;

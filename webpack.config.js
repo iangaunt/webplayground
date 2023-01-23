@@ -1,7 +1,8 @@
+/* eslint-disable no-undef */
 const prod = process.env.NODE_ENV === 'production';
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = await import('html-webpack-plugin');
+const MiniCssExtractPlugin = await import('mini-css-extract-plugin');
 
 module.exports = {
     mode: prod ? 'production' : 'development',

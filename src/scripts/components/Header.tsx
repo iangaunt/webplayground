@@ -1,17 +1,19 @@
 import Square from './Square';
 
+/**
+ * The landing page of the website, structured as a basic introduction
+ * @returns - The JSX element of the header. 
+ */
 function Header() : JSX.Element {
     return (
-        <div style={{ 
-            border: '#161925 1px solid', 
-            padding: '20px' 
-        }}>
-            <h1 id="header">IAN GAUNT</h1>
+        <div className="container">
+            <h1>IAN GAUNT</h1>
             <div className='square-container'>
-                <Square class="square sq1"/>
-                <Square class="square sq2"/>
-                <Square class="square sq3"/>
+                <Square class="sq1"/>
+                <Square class="sq2"/>
+                <Square class="sq3"/>
             </div>
+            <h2 className="copyright">© copyright Ian Gaunt 2023</h2>
         </div>
     );
 }
