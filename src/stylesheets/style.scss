@@ -1,157 +1,305 @@
-@import url('https://fonts.googleapis.com/css2?family=Baskervville&display=swap');
+@import "https://fonts.googleapis.com/css2?family=Baskervville&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap";
 
-/* Variables */ 
 /* Colors */
-$white: #FDFFFC;
+
+$white: #fdfffc;
 $blue: #235789;
-$red: #C1292E;
-$yellow: #F1D302;
+$red: #c1292e;
+$green: #0a8754;
 $black: #161925;
 
-$white-tns: #FDFFFC99;
+/* Transparent colors */
+
+$white-tns: #fdfffc99;
 $blue-tns: #23578999;
-$red-tns: #C1292E99;
-$yellow-tns: #F1D30299;
+$red-tns: #c1292e99;
+$green-tns: #0a875499;
 $black-tns: #16192599;
 
 /* Keyframes */
-@keyframes text-fadeOutIn {
-    0% { opacity: 1; background: var(--starting-color); color: $white}
+
+@keyframes text-expand {
+    0% { opacity: 1; }
+
     50% { opacity: 0; }
-    100% { opacity: 1; content: var(--full); background: var(--ending-color); color: $white}
-}
 
-@keyframes text-fadeInOut {
-    0% { opacity: 1; content: var(--full); background: var(--ending-color); color: $black}
-    50% { opacity: 0; }
-    100% { opacity: 1; background: var(--starting-color); color: $white}
-}
-
-* {
-    font-family: 'Baskervville', serif;
-    margin: 0; padding: 0;
-
-    body {
-        overflow-x: hidden;
-        margin: 0; padding: 0;
-    }    
-
-    ::-webkit-scrollbar {
-        width: 0px;
+    100% {
+        content: var(--full);
+        opacity: 1;
     }
 }
 
-.nav-bar {
-	overflow: hidden;
-	position: fixed; z-index: 10000;
-    left: 20px; top: 20px;
-	width: 100%;
+@keyframes color-pulse {
+    0% { color: $blue }
+    33% { color: $red }
+    66% { color: $green }
+    100% { color: $blue}
+}
 
-    a, button {
-        border-top: 1px solid $black; 
-        border-bottom: 1px solid $black; 
+/* Mixins */
+@mixin flex {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 
-        color: var(--glaucous);	font-size: 20px;
-        text-decoration: none; text-align: center;
-    
-        padding: 15px 20px;
+/* General page styles */
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+
+    body {
+        color: $black; 
+        font-family: Baskervville, serif;
+        margin: 0;
+        overflow-x: hidden;
+        padding: 0;
+    }
+
+    body,
+    html {
+        height: 100%;
+        width: 100%;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+/* Navigation bar, locked in top left, for website movement */
+.navigation {
+    left: 20px;
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    z-index: 10000;
+
+    a,
+    button {
+        --hover-color: $blue;
+
+        background: $white;
+        border-bottom: 1px solid $black;
+        border-top: 1px solid $black;
+        color: $black;
+        filter: drop-shadow(10px 10px 0px $black-tns);
         float: left;
-    
-        transition-property: background-color, height; 
+        font-size: 20px;
+        padding: 15px 20px;
+        text-align: center;
+        text-decoration: none;
         transition-duration: 0.3s;
-        
+
         &:hover {
-            background: $blue;
-            height: 35px;
+            background: var(--hover-color);
+            color: $white;
+            padding: 25px 20px;
         }
 
-        &:first-child {
-            border-left: 1px solid $black;
-        }
+        &:first-child { border-left: 1px solid $black; }
+        &:last-child { border-right: 1px solid $black; }
 
-        &:last-child {
-            border-right: 1px solid $black;
-        }
+        &:nth-child(3n - 2) { --hover-color: #235789; }
+        &:nth-child(3n - 1) { --hover-color: #c1292e; }
+        &:nth-child(3n) { --hover-color: #0a8754; }
     }
 }
 
 .header {
-    width: 100vw; height: 100vh;
-    display: flex; justify-content: center; align-items: center;
+    @include flex;
+
+    background: $white;
+    height: 100vh;
     overflow: hidden;
+    width: 100vw;
 
-    background: $white; 
-
-    .container { 
+    .container {
         border: $black 1px solid;
-        padding: 20px
+        padding: 20px;
     }
 
     .square-container {
-        display: flex; justify-content: left; align-items: left;
+        @include flex;
+
+        justify-content: left;
     }
 
     .square {
-        --card: '';
-        --full: ''; 
+        --card: "";
+        --full: "";
 
-        width: 60px; height: 60px;
-        margin: 2px;
+        @include flex;
 
         font-size: 35px;
-
+        height: 60px;
+        margin: 2px;
         transition: width 0.4s ease-in-out, opacity 1s ease, content 1s ease, font-size 0.4s ease;
-        display: flex; justify-content: center; align-items: center;
+        width: 60px;
 
         &::before {
-            content: var(--card);
             color: $white;
-            animation: text-fadeInOut 0.4 ease-in-out backwards; 
+            content: var(--card);
         }
 
         &:hover {
-            width: 250px;
             font-size: 25px;
+            width: 250px;
 
             &::before {
-                animation: text-fadeOutIn 0.4s ease-in-out forwards;
+                animation: text-expand 0.4s ease-in-out forwards;
             }
         }
-    }    
-
-    .sq1 { 
-        --card: 'Sd'; --full: 'software dev'; 
-        background: $blue; 
     }
 
-    .sq2 { 
-        --card: 'Wb'; --full: 'website builder'; 
-        background: $red; 
+    .sq1 {
+        --card: "Sd";
+        --full: "software dev";
+
+        background: $blue;
     }
 
-    .sq3 { 
-        --card: 'Gh'; --full: 'graphic designer'; 
-        background: $yellow; 
+    .sq2 {
+        --card: "Wb";
+        --full: "website builder";
+
+        background: $red;
+    }
+
+    .sq3 {
+        --card: "Gh";
+        --full: "graphic designer";
+
+        background: $green;
     }
 
     .copyright {
-        position: absolute;
-        bottom: 20px; right: 20px; 
-        font-size: 15px; 
-        color: $black-tns;
-
         border: 1px solid $black;
-        padding: 6px;
-
+        bottom: 20px;
+        color: $black-tns;
+        font-size: 15px;
         font-style: italic;
+        padding: 6px;
+        position: absolute;
+        right: 20px;
     }
 
     h1 {
-        color: $black;
-        transition: color 0.2s;
-
-        font-size: 125px; 
+        font-size: 125px;
         line-height: 125px;
         text-align: center;
+        transition: color 0.2s;
     }
+}
+
+.about-me {
+    @include flex;
+
+    background: $white;
+    flex-direction: row;
+    height: calc(60vh - 50px);
+    justify-content: left;
+    width: calc(100vw - 50px);
+
+    .box {
+        @include flex;
+
+        background: $white;
+        height: 100%;
+        width: 100vw;
+
+        .code-box {
+            @include flex;
+
+            border-radius: 20px;
+            height: 100%;
+            width: 50%;
+
+            .code {
+                @include flex;
+
+                align-items: baseline;
+                flex-direction: column;
+                font-family: "Courier Prime", monospace;
+                font-size: 24px;
+                justify-content: center;
+                height: calc(60vh - 125px);
+                width: calc(50vw - 125px);
+
+                .b { color: $blue; }
+                .r { color: $red; }
+                .g { color: $green; }
+                .bt { color: $black-tns; }
+            }
+        }
+
+        .description-box {
+            @include flex;
+
+            align-items: baseline;
+            flex-direction: column;
+            height: 100%;
+            width: 50%;
+
+            .description {
+                height: calc(60vh - 125px);
+                width: calc(50vw - 125px);
+
+                h1 {
+                    color: $blue;
+                    font-size: 80px;
+                }
+    
+                h2 {
+                    font-size: 19px;
+                }
+            }
+        }
+    }
+}
+
+.programming {
+    @include flex;
+
+    background: $white;
+    height: 60vh;
+    width: 100vw;
+
+    .container {
+        @include flex; 
+
+        flex-direction: column;
+        justify-content: left;
+        height: calc(60vh - 50px);
+        width: calc(100vw - 50px);
+
+        .logo {
+            height: 100px;
+            transition-duration: 0.4s;
+            width: 100px; 
+
+            &:hover {
+                height: calc(100px * 1.04); 
+                width: calc(100px * 1.04);
+            }
+        }
+
+        h1 {
+            color: $red; 
+            font-size: 80px; 
+            line-height: 60px;
+        }
+        
+        h2 { 
+            font-size: 30px; 
+            line-height: 60px;
+        }
+
+        h3 {
+            width: 40%; 
+        }
+    }
+
 }

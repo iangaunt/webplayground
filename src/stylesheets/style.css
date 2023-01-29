@@ -1,159 +1,175 @@
-@import url("https://fonts.googleapis.com/css2?family=Baskervville&display=swap");
-/* Variables */
+@import "https://fonts.googleapis.com/css2?family=Baskervville&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap";
 /* Colors */
+/* Transparent colors */
 /* Keyframes */
-@-webkit-keyframes text-fadeOutIn {
+@-webkit-keyframes text-expand {
   0% {
     opacity: 1;
-    background: var(--starting-color);
-    color: #FDFFFC;
   }
   50% {
     opacity: 0;
   }
   100% {
-    opacity: 1;
     content: var(--full);
-    background: var(--ending-color);
-    color: #FDFFFC;
+    opacity: 1;
   }
 }
-@keyframes text-fadeOutIn {
+@keyframes text-expand {
   0% {
     opacity: 1;
-    background: var(--starting-color);
-    color: #FDFFFC;
   }
   50% {
     opacity: 0;
   }
   100% {
-    opacity: 1;
     content: var(--full);
-    background: var(--ending-color);
-    color: #FDFFFC;
+    opacity: 1;
   }
 }
-@-webkit-keyframes text-fadeInOut {
+@-webkit-keyframes color-pulse {
   0% {
-    opacity: 1;
-    content: var(--full);
-    background: var(--ending-color);
-    color: #161925;
+    color: #235789;
   }
-  50% {
-    opacity: 0;
+  33% {
+    color: #c1292e;
+  }
+  66% {
+    color: #0a8754;
   }
   100% {
-    opacity: 1;
-    background: var(--starting-color);
-    color: #FDFFFC;
+    color: #235789;
   }
 }
-@keyframes text-fadeInOut {
+@keyframes color-pulse {
   0% {
-    opacity: 1;
-    content: var(--full);
-    background: var(--ending-color);
-    color: #161925;
+    color: #235789;
   }
-  50% {
-    opacity: 0;
+  33% {
+    color: #c1292e;
+  }
+  66% {
+    color: #0a8754;
   }
   100% {
-    opacity: 1;
-    background: var(--starting-color);
-    color: #FDFFFC;
+    color: #235789;
   }
 }
+/* Mixins */
+/* General page styles */
 * {
-  font-family: "Baskervville", serif;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 * body {
-  overflow-x: hidden;
+  color: #161925;
+  font-family: Baskervville, serif;
   margin: 0;
+  overflow-x: hidden;
   padding: 0;
 }
-* ::-webkit-scrollbar {
-  width: 0px;
-}
-
-.nav-bar {
-  overflow: hidden;
-  position: fixed;
-  z-index: 10000;
-  left: 20px;
-  top: 20px;
+* body,
+* html {
+  height: 100%;
   width: 100%;
 }
-.nav-bar a, .nav-bar button {
-  border-top: 1px solid #161925;
+* ::-webkit-scrollbar {
+  width: 0;
+}
+
+/* Navigation bar, locked in top left, for website movement */
+.navigation {
+  left: 20px;
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  z-index: 10000;
+}
+.navigation a,
+.navigation button {
+  --hover-color: $blue;
+  background: #fdfffc;
   border-bottom: 1px solid #161925;
-  color: var(--glaucous);
-  font-size: 20px;
-  text-decoration: none;
-  text-align: center;
-  padding: 15px 20px;
+  border-top: 1px solid #161925;
+  color: #161925;
+  filter: drop-shadow(10px 10px 0px rgba(22, 25, 37, 0.6));
   float: left;
-  transition-property: background-color, height;
+  font-size: 20px;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
   transition-duration: 0.3s;
 }
-.nav-bar a:hover, .nav-bar button:hover {
-  background: #235789;
-  height: 35px;
+.navigation a:hover,
+.navigation button:hover {
+  background: var(--hover-color);
+  color: #fdfffc;
+  padding: 25px 20px;
 }
-.nav-bar a:first-child, .nav-bar button:first-child {
+.navigation a:first-child,
+.navigation button:first-child {
   border-left: 1px solid #161925;
 }
-.nav-bar a:last-child, .nav-bar button:last-child {
+.navigation a:last-child,
+.navigation button:last-child {
   border-right: 1px solid #161925;
+}
+.navigation a:nth-child(3n-2),
+.navigation button:nth-child(3n-2) {
+  --hover-color: #235789;
+}
+.navigation a:nth-child(3n-1),
+.navigation button:nth-child(3n-1) {
+  --hover-color: #c1292e;
+}
+.navigation a:nth-child(3n),
+.navigation button:nth-child(3n) {
+  --hover-color: #0a8754;
 }
 
 .header {
-  width: 100vw;
-  height: 100vh;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  background: #fdfffc;
+  height: 100vh;
   overflow: hidden;
-  background: #FDFFFC;
+  width: 100vw;
 }
 .header .container {
   border: #161925 1px solid;
   padding: 20px;
 }
 .header .square-container {
+  align-items: center;
   display: flex;
+  justify-content: center;
   justify-content: left;
-  align-items: left;
 }
 .header .square {
   --card: "";
   --full: "";
-  width: 60px;
-  height: 60px;
-  margin: 2px;
-  font-size: 35px;
-  transition: width 0.4s ease-in-out, opacity 1s ease, content 1s ease, font-size 0.4s ease;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
+  font-size: 35px;
+  height: 60px;
+  margin: 2px;
+  transition: width 0.4s ease-in-out, opacity 1s ease, content 1s ease, font-size 0.4s ease;
+  width: 60px;
 }
 .header .square::before {
+  color: #fdfffc;
   content: var(--card);
-  color: #FDFFFC;
-  -webkit-animation: text-fadeInOut 0.4 ease-in-out backwards;
-          animation: text-fadeInOut 0.4 ease-in-out backwards;
 }
 .header .square:hover {
-  width: 250px;
   font-size: 25px;
+  width: 250px;
 }
 .header .square:hover::before {
-  -webkit-animation: text-fadeOutIn 0.4s ease-in-out forwards;
-          animation: text-fadeOutIn 0.4s ease-in-out forwards;
+  -webkit-animation: text-expand 0.4s ease-in-out forwards;
+          animation: text-expand 0.4s ease-in-out forwards;
 }
 .header .sq1 {
   --card: "Sd";
@@ -163,27 +179,136 @@
 .header .sq2 {
   --card: "Wb";
   --full: "website builder";
-  background: #C1292E;
+  background: #c1292e;
 }
 .header .sq3 {
   --card: "Gh";
   --full: "graphic designer";
-  background: #F1D302;
+  background: #0a8754;
 }
 .header .copyright {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  font-size: 15px;
-  color: rgba(22, 25, 37, 0.6);
   border: 1px solid #161925;
-  padding: 6px;
+  bottom: 20px;
+  color: rgba(22, 25, 37, 0.6);
+  font-size: 15px;
   font-style: italic;
+  padding: 6px;
+  position: absolute;
+  right: 20px;
 }
 .header h1 {
-  color: #161925;
-  transition: color 0.2s;
   font-size: 125px;
   line-height: 125px;
   text-align: center;
+  transition: color 0.2s;
+}
+
+.about-me {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: #fdfffc;
+  flex-direction: row;
+  height: calc(60vh - 50px);
+  justify-content: left;
+  width: calc(100vw - 50px);
+}
+.about-me .box {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: #fdfffc;
+  height: 100%;
+  width: 100vw;
+}
+.about-me .box .code-box {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+  height: 100%;
+  width: 50%;
+}
+.about-me .box .code-box .code {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: column;
+  font-family: "Courier Prime", monospace;
+  font-size: 24px;
+  justify-content: center;
+  height: calc(60vh - 125px);
+  width: calc(50vw - 125px);
+}
+.about-me .box .code-box .code .b {
+  color: #235789;
+}
+.about-me .box .code-box .code .r {
+  color: #c1292e;
+}
+.about-me .box .code-box .code .g {
+  color: #0a8754;
+}
+.about-me .box .code-box .code .bt {
+  color: rgba(22, 25, 37, 0.6);
+}
+.about-me .box .description-box {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  flex-direction: column;
+  height: 100%;
+  width: 50%;
+}
+.about-me .box .description-box .description {
+  height: calc(60vh - 125px);
+  width: calc(50vw - 125px);
+}
+.about-me .box .description-box .description h1 {
+  color: #235789;
+  font-size: 80px;
+}
+.about-me .box .description-box .description h2 {
+  font-size: 19px;
+}
+
+.programming {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: #fdfffc;
+  height: 60vh;
+  width: 100vw;
+}
+.programming .container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: left;
+  height: calc(60vh - 50px);
+  width: calc(100vw - 50px);
+}
+.programming .container .logo {
+  height: 100px;
+  transition-duration: 0.4s;
+  width: 100px;
+}
+.programming .container .logo:hover {
+  height: 104px;
+  width: 104px;
+}
+.programming .container h1 {
+  color: #c1292e;
+  font-size: 80px;
+  line-height: 60px;
+}
+.programming .container h2 {
+  font-size: 30px;
+  line-height: 60px;
+}
+.programming .container h3 {
+  width: 40%;
 }/*# sourceMappingURL=style.css.map */
